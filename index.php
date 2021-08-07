@@ -1,5 +1,7 @@
 <?php
 
+echo '<div   class="wrapper">';
+
 echo '<link rel="stylesheet" href="style.css">';
 
 
@@ -9,3 +11,9 @@ echo ' <a href="dz1_1.php">   dz1_1.php  </a>';
 
 echo '<p> 2. Написать функцию которая выводит первые N чисел фибоначчи </p>';
 echo ' <a href="dz1_2.php">   dz1_2.php  </a>';
+
+
+
+
+
+echo '</div>';

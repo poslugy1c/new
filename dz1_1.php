@@ -21,7 +21,7 @@ function from10to2($a)
 
 echo '42 res = ' . from10to2(42);
 
-echo '<br>';
+echo '<br> <br>';
 
 echo ' из двоичной в десятичную';
 function from2to10($bin)
