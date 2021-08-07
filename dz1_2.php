@@ -10,6 +10,7 @@ function fibo($n)
     $n--;
     echo 1 . '<br>';
 
+    //
     $firstNum  = 0;
     $SecondNum = 1;
     $numFibo = 0;
