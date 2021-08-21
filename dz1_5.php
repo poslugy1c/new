@@ -40,7 +40,7 @@ function PercentRatio($arr){
     echo 'Процент отрицательных в массиве: ' . ($numNegative * 100 / count($arr)) .'% <br>';
     echo 'Процент положительных в массиве: ' . ($numPositive * 100 / count($arr)) .'% <br>';
     echo 'Процент нулей в массиве: ' . ($num0 * 100 / count($arr)) . '% <br>';
-    echo 'Процент простых чисел: ' . ($simple * 100 / count($arr)) . '%';
+    echo 'Процент простых чисел: ' . ($simple * 100 / count($arr)) . '% <br>';
     // echo '<br> simple ' . $simple;
 
 }; 
@@ -51,4 +51,45 @@ $newArr = array(5, 7, 0 , 444, 17, 8, 4, 0, 8, -29, 0, 8, 4, 188, 11, 5);
 
 PercentRatio($newArr);
 
-  
+echo '<br>';
+
+function SortArr(&$arr, $sort_dec =false){
+    $m = 0;
+    $n = count($arr);
+
+    for($i = 0; $i < $n; $i++) {
+        $m = $i;
+
+        for($j = $i + 1; $j < $n; $j++) {
+            if ($sort_dec){
+                if(($arr[$j]) > ($arr[$m]) ){
+                    $m = $j;
+                };
+            }else{
+                if(($arr[$j]) < ($arr[$m]) ){
+                    $m = $j;
+                };
+            }
+        };
+
+        $exch = $arr[$i];
+        $arr[$i] = $arr[$m];
+        $arr[$m] =$exch; 
+
+        // echo ' arr i ' . $arr[$i];
+    };
+};  
+
+echo '<br>';
+echo 'Исходный массив' . '<br>';
+print_r($newArr);
+echo '<br>';
+echo '<br>';
+echo 'Отсортированный массив по возростанию' . '<br>';
+SortArr($newArr);
+print_r($newArr);
+echo '<br>';
+echo '<br>';
+echo 'Отсортированный массив по убыванию' . '<br>';
+SortArr($newArr, true);
+print_r($newArr);
