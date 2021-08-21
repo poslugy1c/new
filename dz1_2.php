@@ -5,10 +5,13 @@ echo '<br> <br>';
 
 function fibo($n)
 {
+    $arrFibo = array();
+
     $n--;
-    echo 0 . '<br>';
+    $arrFibo[] =0;
+
     $n--;
-    echo 1 . '<br>';
+    $arrFibo[] =1;
 
     $firstNum  = 0;
     $SecondNum = 1;
@@ -19,9 +22,9 @@ function fibo($n)
         $firstNum = $SecondNum;
         $SecondNum = $numFibo;
         $n--;
-        echo $numFibo . '<br>';
+        $arrFibo[] =$numFibo;
     }
+    return $arrFibo;
 }
 
-fibo(25);
-
+var_dump(fibo(25));

@@ -7,7 +7,6 @@ echo '<br> <br>';
 echo 'из десятичной в двоичную <br> ';
 function from10to2($a)
 {
-    $a = (int) $a;
     $neg = $a < 0;
     $a = abs($a);
     $bin = '';

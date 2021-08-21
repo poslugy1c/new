@@ -33,7 +33,6 @@ function PercentRatio($arr){
             $simple++;
             // echo '<br> simple ' . $arr[$i] . ' ' . $j;
         };
-
     }
 
     echo '<br>';
@@ -42,7 +41,6 @@ function PercentRatio($arr){
     echo 'Процент нулей в массиве: ' . ($num0 * 100 / count($arr)) . '% <br>';
     echo 'Процент простых чисел: ' . ($simple * 100 / count($arr)) . '% <br>';
     // echo '<br> simple ' . $simple;
-
 }; 
 
 $newArr = array(5, 7, 0 , 444, 17, 8, 4, 0, 8, -29, 0, 8, 4, 188, 11, 5); 
