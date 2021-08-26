@@ -50,3 +50,22 @@ function fibo($limit, $a = 0, $b = 1, $sum =0)
 }
 
 echo 'сумма всех первых 9 чисел фибоначи ' . fibo(9);
+
+echo '<br>';
+echo '<br>';
+
+echo '3. Рекурсия. Написать функцию, возведения числа N в степень M';
+echo '<br>';
+
+function myPow($n, $m)
+{
+    if ($m == 0) {
+        return 1;
+      }
+      if ($m < 0) {
+        return myPow(1/$n, -$m);
+      }
+      return $n * myPow($n, $m-1);
+}
+
+echo myPow(5, -2);
