@@ -6,7 +6,6 @@ echo '<p> 7. Рекурсии
  </p>';
 echo '<br>';
 
-
 echo '1. Рекурсия. из десятичной в двоичную рекурсией <br> ';
 
 function from10to2($a)
@@ -31,7 +30,6 @@ function from2to10($bin)
     if ($bin == 0) return 0;
     return $bin % 10 + 2 * from2to10($bin / 10);
 }
-
 
 echo '<br> 101010 res = ' . from2to10(1101000);
 
@@ -111,12 +109,13 @@ echo '<br>';
 function PercentRatio($arr, $n =0, $numNegative =0, $numPositive =0, $num0 =0, $simple =0){
 
     if($n >count($arr)-1){
-        //возвращаю результат
-        echo 'Процент отрицательных в массиве: ' . ($numNegative * 100 / count($arr)) .'% <br>';
-        echo 'Процент положительных в массиве: ' . ($numPositive * 100 / count($arr)) .'% <br>';
-        echo 'Процент нулей в массиве: ' . ($num0 * 100 / count($arr)) . '% <br>';
-        echo 'Процент простых чисел: ' . ($simple * 100 / count($arr)) . '% <br>';
-        return 0;
+        $res =[
+            'Процент отрицательных в массиве: ' => ($numNegative * 100 / count($arr)),
+            'Процент положительных в массиве: ' => ($numPositive * 100 / count($arr)),
+            'Процент нулей в массиве: ' => ($num0 * 100 / count($arr)),
+            'Процент простых чисел: ' => ($simple * 100 / count($arr)),
+        ];
+        return $res;
     };
 
     if ($arr[$n] < 0){
@@ -145,7 +144,57 @@ function PercentRatio($arr, $n =0, $numNegative =0, $numPositive =0, $num0 =0, $
 
 $newArr = array(5, 7, 0 , 444, 17, 8, 4, 0, 8, -29, 0, 8, 4, 188, 11, 5); 
 
-PercentRatio($newArr);
+$res = PercentRatio($newArr);
+echo "<pre>";
+print_r($res);
 
-//
+
+echo '<br>';
+echo '<br>';
+
+function SortArrRec(&$arr, $i=0, $j=0 , $n =0, $rev =1) {
+    
+    if ($n ==0){
+        $n = count($arr);
+    };
+
+    if($j == $n-$i-1)
+    {
+        $i = $i+1;
+        $j = 0;
+    }
+    if($i == $n-1)
+        return $arr;
+
+    if ($rev == 1) {
+        if($arr[$j] < $arr[$j+1]) {
+            $temp = $arr[$j];
+            $arr[$j] = $arr[$j + 1];
+            $arr[$j+1] = $temp;}
+    } else {
+        if($arr[$j] > $arr[$j+1]) {
+            $temp = $arr[$j];
+            $arr[$j] = $arr[$j + 1];
+            $arr[$j+1] = $temp;}
+    };
+
+    $j++;
+    SortArrRec($arr, $i, $j, $n, $rev);
+}
+
+echo '<br>';
+echo 'Исходный массив' . '<br>';
+echo "<pre>";
+print_r($newArr);
+echo '<br>';
+echo '<br>';
+echo 'Отсортированный массив по возростанию' . '<br>';
+SortArrRec($newArr);
+echo "<pre>";
+print_r($newArr);
+echo '<br>';
+echo '<br>';
+echo 'Отсортированный массив по убыванию' . '<br>';
+SortArrRec($newArr, 1);
+print_r($newArr);
 
