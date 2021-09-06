@@ -152,7 +152,7 @@ print_r($res);
 echo '<br>';
 echo '<br>';
 
-function SortArrRec(&$arr, $i=0, $j=0 , $n =0, $rev =1) {
+function SortArrRec(&$arr, $rev =false, $i=0, $j=0 , $n =0) {
     
     if ($n ==0){
         $n = count($arr);
@@ -179,7 +179,7 @@ function SortArrRec(&$arr, $i=0, $j=0 , $n =0, $rev =1) {
     };
 
     $j++;
-    SortArrRec($arr, $i, $j, $n, $rev);
+    SortArrRec($arr,$rev, $i, $j, $n, $rev);
 }
 
 echo '<br>';
@@ -195,6 +195,6 @@ print_r($newArr);
 echo '<br>';
 echo '<br>';
 echo 'Отсортированный массив по убыванию' . '<br>';
-SortArrRec($newArr, 1);
+SortArrRec($newArr, true);
 print_r($newArr);
 
