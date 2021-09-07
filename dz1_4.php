@@ -27,7 +27,7 @@ function inDiapazon($ip, $beginDiap, $endDiap)
                     $numBeginTriad++;
 
                     if( ((int) $triada < (int)$bTriada) && $numBeginTriad == $numTriad){
-                        return $ip .' not in diapazon';
+                        return false;
                     } 
 
                     $bTriada = '';
@@ -42,7 +42,7 @@ function inDiapazon($ip, $beginDiap, $endDiap)
                     $numEndTriad++;
 
                     if( ((int) $triada > (int)$eTriada) && $numEndTriad == $numTriad){
-                        return $ip .' not in diapazon';
+                        return false;
                     } 
 
                     $eTriada = '';
@@ -66,15 +66,15 @@ function inDiapazon($ip, $beginDiap, $endDiap)
     // echo '********  ' . (int) $bTriada .' / '. $numBeginTriad;
 
     if( ((int) $triada < (int)$bTriada) && $numBeginTriad == $numTriad){
-        return $ip .' not in diapazon';
+        return false;
     } 
     if( ((int) $triada > (int)$eTriada) && $numEndTriad == $numTriad){
-        return $ip .' not in diapazon';
+        return false;
     } 
 
-    return $ip .' in Diapazon';
+    return true;
 }
 
 $res =inDiapazon('192.168.1.77', '192.168.1.44', '192.168.1.255');
 
-echo $res;
+echo 'in diapazon = ' . $res;
