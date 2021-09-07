@@ -27,6 +27,8 @@ function transposeArray(&$arr)
 }
 
 echo '<br> Исходная матрица <br>';
+
+echo "<pre>";
 print_r($matr);
 
 transposeArray($matr);
@@ -79,14 +81,13 @@ $matrNew = [
     [1,  2, 3, -17],
     [4,  2, 6,  0],
     [3,  0, 6,  3],
-    [-9, 8, 0,  1]
+    [-19, 8, 0,  1]
 ];
 
 function removeRow(&$m)
 {
-    $IndNumbers = array();
-
-    for ($i = 0; $i < count($m); $i++) {
+    $mLength =count($m);
+    for ($i = 0; $i < $mLength; $i++) {
         $sum = 0;
         $nulElem = false;
 
@@ -96,7 +97,10 @@ function removeRow(&$m)
             if ($m[$i][$j] == 0) {
                 $nulElem = true;
             };
+            // echo '<br>';
+            // echo $m[$i][$j]; 
         };
+        // echo '<br>';
 
         if (($sum >= 0) && ($nulElem)) {
               unset($m[$i]); 
@@ -125,8 +129,8 @@ function removeCol(&$m)
         };
     };
 
-    // echo '<br>';
-    // print_r($IndNumbers);
+    echo '<br>';
+    print_r($IndNumbers);
 
     for ($i = 0; $i < count($m[0]); $i++) {
         for ($x = 0; $x < count($IndNumbers); $x++) {

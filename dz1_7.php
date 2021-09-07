@@ -147,7 +147,7 @@ $newArr = array(5, 7, 0, 444, 17, 8, 4, 0, 8, -29, 0, 8, 4, 188, 11, 5);
 $res = PercentRatio($newArr);
 echo "<pre>";
 print_r($res);
-
+echo '</pre>';
 
 echo '<br>';
 echo '<br>';
@@ -188,17 +188,24 @@ echo '<br>';
 echo 'Исходный массив' . '<br>';
 echo "<pre>";
 print_r($newArr);
+echo '</pre>';
+
 echo '<br>';
 echo '<br>';
 echo 'Отсортированный массив по возростанию' . '<br>';
 SortArrRec($newArr);
 echo "<pre>";
 print_r($newArr);
+echo '</pre>';
+
 echo '<br>';
 echo '<br>';
 echo 'Отсортированный массив по убыванию' . '<br>';
 SortArrRec($newArr, true);
+
+echo "<pre>";
 print_r($newArr);
+echo '</pre>';
 
 echo '<br>';
 echo '<br>';
@@ -237,14 +244,17 @@ function transposeArrayRec(&$arr, $i = 0, $newArray = [])
 };
 
 echo '<br> Исходная матрица <br>';
+echo "<pre>";
 print_r($matr);
+echo "</pre>";
 
 transposeArrayRec($matr);
 echo '<br> Транспонированая матрица <br>';
+echo "<pre>";
 print_r($matr);
-
+echo "</pre>";
 //2  Сложить две матрицы
-echo '6. Сложить две матрицы';
+echo '7. Рекурсия.  Сложить две матрицы';
 echo '<br>';
 
 $matr1 = [
@@ -275,17 +285,122 @@ function SumMatrix($m1, $m2, $i = 0, $mRes = [])
     $mRes[$i] = array();
     for ($j = 0; $j < $n; $j++) $mRes[$i][$j] = $m1[$i][$j] + $m2[$i][$j];
 
-   return SumMatrix($m1, $m2, ++$i, $mRes);
+    return SumMatrix($m1, $m2, ++$i, $mRes);
 };
 
 echo '<br> Матрица 1 <br>';
+echo "<pre>";
 print_r($matr1);
+echo "</pre>";
 echo '<br> Матрица 2 <br>';
+
+echo "<pre>";
 print_r($matr2);
+echo "</pre>";
 
 $resM = SumMatrix($matr1, $matr2);
 
 echo '<br> Результирующая матрица <br>';
+echo "<pre>";
 print_r($resM);
+// echo "</pre>";
 
 echo '<br> <br>';
+
+//3 Удалить те строки, в которых сумма элементов положительна 
+//и присутствует хотя бы один нулевой элемент. Аналогично для столбцов.
+echo '7. Рекурсия.  Удалить те строки, в которых сумма элементов положительна ';
+echo '<br>';
+echo 'и присутствует хотя бы один нулевой элемент. Аналогично для столбцов. ';
+
+echo '<br> <br>';
+
+$matrNew = [
+    [1,  2, 3, -17],
+    [4,  2, 6,  0],
+    [3,  0, 6,  3],
+    [-19, 8, 0,  1]
+];
+
+function removeRow(&$m, $i = 0, $mLength = 0)
+{
+    if ($mLength == 0) {
+        $mLength = count($m);
+    };
+
+    if ($i >=  $mLength) {
+        return $m;
+    };
+
+    $sum = 0;
+    $nulElem = false;
+
+    for ($j = 0; $j < count($m[$i]); $j++) {
+        $sum += $m[$i][$j];
+
+        if ($m[$i][$j] == 0) {
+            $nulElem = true;
+        };
+        // echo $m[$i][$j]; 
+    };
+    if (($sum >= 0) && ($nulElem)) {
+        unset($m[$i]);
+    };
+
+    removeRow($m, ++$i, $mLength);
+}
+
+function removeCol(&$m, $i = 0, $mLength = 0)
+{
+    if ($mLength == 0) {
+        $mLength = count($m);
+    };
+
+    if ($i >=  $mLength) {
+        return $m;
+    };
+
+    $sum = 0;
+    $nulElem = false;
+
+    for ($j = 0; $j < count($m[$i]); $j++) {
+        $sum += $m[$j][$i];
+
+        if ($m[$j][$i] == 0) {
+            $nulElem = true;
+        };
+
+        echo '<br>';
+        echo $m[$j][$i];
+
+    };
+
+    echo '<br>';
+
+    if (($sum >= 0) && ($nulElem)) {
+
+        for ($x = 0; $x < count($m[0]); $x++) {
+            if ($x == $i) {
+                for ($j = 0; $j < count($m); $j++) {
+                    unset($m[$j][$i]);
+                };
+            };
+        };
+    };
+
+    removeCol($m, ++$i, $mLength);
+}
+
+echo '<br> Исходная матрица <br>';
+print_r($matrNew);
+$matrix_copy = $matrNew;
+
+removeRow($matrNew);
+
+echo '<br> Результат обработки строк <br>';
+print_r($matrNew);
+
+removeCol($matrix_copy);
+
+echo '<br> Результат обработки столбцов <br>';
+print_r($matrix_copy);
