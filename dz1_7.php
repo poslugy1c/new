@@ -206,26 +206,26 @@ echo '<br>';
 //1 Транспонировать матрицу
 echo '6. Рекурсия. Транспонировать матрицу';
 
-// $matr = [
-//     [1, 2, 3, 12],
-//     [4, 5, 6, 0],
-//     [7, 8, 9, -1],
-//     [4, 1, 18, 44],
-// ];
-
 $matr = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
+    [1, 2, 3, 12],
+    [4, 5, 6, 0],
+    [7, 8, 9, -1],
+    [4, 1, 18, 44],
 ];
 
-function transposeArrayRec(&$arr, $i = 0, $newArray =[])
+// $matr = [
+//     [1, 2, 3],
+//     [4, 5, 6],
+//     [7, 8, 9],
+// ];
+
+function transposeArrayRec(&$arr, $i = 0, $newArray = [])
 {
-    if($i >=  count($arr)){
+    if ($i >=  count($arr)) {
         return $arr;
     };
 
-    if(count($newArray) ==0){
+    if (count($newArray) == 0) {
         $newArray = $arr;
     };
 
@@ -242,3 +242,50 @@ print_r($matr);
 transposeArrayRec($matr);
 echo '<br> Транспонированая матрица <br>';
 print_r($matr);
+
+//2  Сложить две матрицы
+echo '6. Сложить две матрицы';
+echo '<br>';
+
+$matr1 = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+
+$matr2 = [
+    [5, 6, 66],
+    [33, 1, 6],
+    [11, 3, 17]
+];
+
+function SumMatrix($m1, $m2, $i = 0, $mRes = [])
+{
+    $m = count($m1);
+    $n = count($m1[0]);
+
+    if ($i >=  count($m1)) {
+        return $mRes;
+    };
+
+    if (count($mRes) == 0) {
+        $mRes = $m1;
+    };
+
+    $mRes[$i] = array();
+    for ($j = 0; $j < $n; $j++) $mRes[$i][$j] = $m1[$i][$j] + $m2[$i][$j];
+
+   return SumMatrix($m1, $m2, ++$i, $mRes);
+};
+
+echo '<br> Матрица 1 <br>';
+print_r($matr1);
+echo '<br> Матрица 2 <br>';
+print_r($matr2);
+
+$resM = SumMatrix($matr1, $matr2);
+
+echo '<br> Результирующая матрица <br>';
+print_r($resM);
+
+echo '<br> <br>';
