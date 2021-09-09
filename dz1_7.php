@@ -350,45 +350,30 @@ function removeRow(&$m, $i = 0, $mLength = 0)
     removeRow($m, ++$i, $mLength);
 }
 
-function removeCol(&$m, $i = 0, $mLength = 0)
+function removeCol(&$m1, $i = 0)
 {
-    if ($mLength == 0) {
-        $mLength = count($m);
+    if($i >= count($m1)){
+        return $m1;
     };
-
-    if ($i >=  $mLength) {
-        return $m;
-    };
-
+    
     $sum = 0;
     $nulElem = false;
-
-    for ($j = 0; $j < count($m[$i]); $j++) {
-        $sum += $m[$j][$i];
-
-        if ($m[$j][$i] == 0) {
-            $nulElem = true;
-        };
-
-        echo '<br>';
-        echo $m[$j][$i];
-
+    for($j = 0; $j <count($m1); $j++){
+       if($m1[$j][$i] ==0){
+           $nulElem =true;
+       };  
+       $sum += $m1[$j][$i];
+    // echo $m1[$j][$i] . ' ';
     };
-
-    echo '<br>';
-
+    
+    // echo '(' . $z .')';    
     if (($sum >= 0) && ($nulElem)) {
-
-        for ($x = 0; $x < count($m[0]); $x++) {
-            if ($x == $i) {
-                for ($j = 0; $j < count($m); $j++) {
-                    unset($m[$j][$i]);
-                };
-            };
-        };
-    };
-
-    removeCol($m, ++$i, $mLength);
+        for($j = 0; $j <count($m1); $j++){
+            unset($m1[$j][$i]);
+        };      
+    };    
+    // echo ' | ';
+    return removeCol($m1, ++$i);
 }
 
 echo '<br> Исходная матрица <br>';
