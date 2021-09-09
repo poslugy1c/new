@@ -5,16 +5,18 @@ echo '1. Написать функцию которая по параметра�
 echo '<br> <br>';
 
 echo 'из десятичной в двоичную <br> ';
-function from10to2($a)
+function from10to2($dec)
 {
-    $neg = $a < 0;
-    $a = abs($a);
+    $neg = $dec < 0;
+    $dec = abs($dec);
     $bin = '';
-    while ($a != 0) {
-        $bin = ($a % 2) . $bin;
-        $a = (int)($a / 2);
+    while ($dec != 0) {
+        $bin = ($dec % 2) . $bin;
+        $dec = (int)($dec / 2);
     }
-    if ($neg) $bin = '-' . $bin;
+    if ($neg) { 
+        $bin = '-' . $bin;
+    }
     return $bin;
 }
 

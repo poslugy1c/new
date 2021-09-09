@@ -8,10 +8,10 @@ echo '<br>';
 
 echo '1. Рекурсия. из десятичной в двоичную рекурсией <br> ';
 
-function from10to2($a)
+function from10to2($dec)
 {
-    if ($a != 0) {
-        $bin = ($a % 2) + 10 * from10to2($a / 2);
+    if ($dec != 0) {
+        $bin = ($dec % 2) + 10 * from10to2($dec / 2);
         return $bin;
     } else {
         return 0;
@@ -39,12 +39,12 @@ echo '<br>';
 echo '2. Рекурсия.  найти сумму всех первых N чисел фибоначи ';
 echo '<br>';
 
-function fibo($limit, $a = 0, $b = 1, $sum = 0)
+function fibo($limit, $firstNum = 0, $secondNum = 1, $sum = 0)
 {
     if ($limit < 1) {
         return $sum;
     }
-    return fibo($limit - 1, $b, $a + $b, $sum + $a);
+    return fibo($limit - 1, $secondNum, $firstNum + $secondNum, $sum + $firstNum);
 }
 
 echo 'сумма всех первых 9 чисел фибоначи ' . fibo(9);
@@ -55,15 +55,15 @@ echo '<br>';
 echo '3. Рекурсия. Написать функцию, возведения числа N в степень M';
 echo '<br>';
 
-function myPow($n, $m)
+function myPow($nNumber, $mNumber)
 {
-    if ($m == 0) {
+    if ($mNumber == 0) {
         return 1;
     }
-    if ($m < 0) {
-        return myPow(1 / $n, -$m);
+    if ($mNumber < 0) {
+        return myPow(1 / $nNumber, -$mNumber);
     }
-    return $n * myPow($n, $m - 1);
+    return $nNumber * myPow($nNumber, $mNumber - 1);
 }
 
 echo myPow(5, -2);
@@ -152,18 +152,18 @@ echo '</pre>';
 echo '<br>';
 echo '<br>';
 
-function SortArrRec(&$arr, $rev = false, $i = 0, $j = 0, $n = 0)
+function SortArrRec(&$arr, $rev = false, $i = 0, $j = 0, $arrCount = 0)
 {
 
-    if ($n == 0) {
-        $n = count($arr);
+    if ($arrCount == 0) {
+        $arrCount = count($arr);
     };
 
-    if ($j == $n - $i - 1) {
+    if ($j == $arrCount - $i - 1) {
         $i = $i + 1;
         $j = 0;
     }
-    if ($i == $n - 1)
+    if ($i == $arrCount - 1)
         return $arr;
 
     if ($rev == 1) {
@@ -181,7 +181,7 @@ function SortArrRec(&$arr, $rev = false, $i = 0, $j = 0, $n = 0)
     };
 
     $j++;
-    SortArrRec($arr, $rev, $i, $j, $n, $rev);
+    SortArrRec($arr, $rev, $i, $j, $arrCount, $rev);
 }
 
 echo '<br>';
@@ -269,23 +269,23 @@ $matr2 = [
     [11, 3, 17]
 ];
 
-function SumMatrix($m1, $m2, $i = 0, $mRes = [])
+function SumMatrix($matrix1, $matrix2, $i = 0, $mRes = [])
 {
-    $m = count($m1);
-    $n = count($m1[0]);
+    $m1Count = count($matrix1);
+    $m2Count = count($matrix1[0]);
 
-    if ($i >=  count($m1)) {
+    if ($i >=  count($matrix1)) {
         return $mRes;
     };
 
     if (count($mRes) == 0) {
-        $mRes = $m1;
+        $mRes = $matrix1;
     };
 
     $mRes[$i] = array();
-    for ($j = 0; $j < $n; $j++) $mRes[$i][$j] = $m1[$i][$j] + $m2[$i][$j];
+    for ($j = 0; $j < $m2Count; $j++) $mRes[$i][$j] = $matrix1[$i][$j] + $matrix2[$i][$j];
 
-    return SumMatrix($m1, $m2, ++$i, $mRes);
+    return SumMatrix($matrix1, $matrix2, ++$i, $mRes);
 };
 
 echo '<br> Матрица 1 <br>';
@@ -322,58 +322,58 @@ $matrNew = [
     [-19, 8, 0,  1]
 ];
 
-function removeRow(&$m, $i = 0, $mLength = 0)
+function removeRow(&$matrix, $i = 0, $mLength = 0)
 {
     if ($mLength == 0) {
-        $mLength = count($m);
+        $mLength = count($matrix);
     };
 
     if ($i >=  $mLength) {
-        return $m;
+        return $matrix;
     };
 
     $sum = 0;
     $nulElem = false;
 
-    for ($j = 0; $j < count($m[$i]); $j++) {
-        $sum += $m[$i][$j];
+    for ($j = 0; $j < count($matrix[$i]); $j++) {
+        $sum += $matrix[$i][$j];
 
-        if ($m[$i][$j] == 0) {
+        if ($matrix[$i][$j] == 0) {
             $nulElem = true;
         };
         // echo $m[$i][$j]; 
     };
     if (($sum >= 0) && ($nulElem)) {
-        unset($m[$i]);
+        unset($matrix[$i]);
     };
 
-    removeRow($m, ++$i, $mLength);
+    removeRow($matrix, ++$i, $mLength);
 }
 
-function removeCol(&$m1, $i = 0)
+function removeCol(&$matrix, $i = 0)
 {
-    if ($i >= count($m1)) {
-        return $m1;
+    if ($i >= count($matrix)) {
+        return $matrix;
     };
 
     $sum = 0;
     $nulElem = false;
-    for ($j = 0; $j < count($m1); $j++) {
-        if ($m1[$j][$i] == 0) {
+    for ($j = 0; $j < count($matrix); $j++) {
+        if ($matrix[$j][$i] == 0) {
             $nulElem = true;
         };
-        $sum += $m1[$j][$i];
+        $sum += $matrix[$j][$i];
         // echo $m1[$j][$i] . ' ';
     };
 
     // echo '(' . $z .')';    
     if (($sum >= 0) && ($nulElem)) {
-        for ($j = 0; $j < count($m1); $j++) {
-            unset($m1[$j][$i]);
+        for ($j = 0; $j < count($matrix); $j++) {
+            unset($matrix[$j][$i]);
         };
     };
     // echo ' | ';
-    return removeCol($m1, ++$i);
+    return removeCol($matrix, ++$i);
 }
 
 echo '<br> Исходная матрица <br>';

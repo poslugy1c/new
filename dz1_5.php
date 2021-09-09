@@ -54,27 +54,27 @@ print_r($res);
 echo '<br>';
 
 function SortArr(&$arr, $sort_dec =false){
-    $m = 0;
-    $n = count($arr);
+    $tempVar = 0;
+    $arrCount = count($arr);
 
-    for($i = 0; $i < $n; $i++) {
-        $m = $i;
+    for($i = 0; $i < $arrCount; $i++) {
+        $tempVar = $i;
 
-        for($j = $i + 1; $j < $n; $j++) {
+        for($j = $i + 1; $j < $arrCount; $j++) {
             if ($sort_dec){
-                if(($arr[$j]) > ($arr[$m]) ){
-                    $m = $j;
+                if(($arr[$j]) > ($arr[$tempVar]) ){
+                    $tempVar = $j;
                 };
             }else{
-                if(($arr[$j]) < ($arr[$m]) ){
-                    $m = $j;
+                if(($arr[$j]) < ($arr[$tempVar]) ){
+                    $tempVar = $j;
                 };
             }
         };
 
         $exch = $arr[$i];
-        $arr[$i] = $arr[$m];
-        $arr[$m] =$exch; 
+        $arr[$i] = $arr[$tempVar];
+        $arr[$tempVar] =$exch; 
         // echo ' arr i ' . $arr[$i];
     };
 };  

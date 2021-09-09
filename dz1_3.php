@@ -3,20 +3,22 @@
 echo '3. Написать функцию, возведения числа N в степень M';
 echo '<br> <br>';
 
-function myPow($n, $m)
+function myPow($nNumber, $mNumber)
 {
-    if($m == 0) return 1;
+    if($mNumber == 0) {
+        return 1;
+    };    
 
     $neg =false;
-    if($m < 0) {
-        $m = -$m;
+    if($mNumber < 0) {
+        $mNumber = -$mNumber;
         $neg =true;
     };
 
-    $res =$n;
-    for($i=0; $i < $m-1; $i++)
+    $res =$nNumber;
+    for($i=0; $i < $mNumber-1; $i++)
     {
-       $res *=  $n; 
+       $res *=  $nNumber; 
     }  
 
     if($neg) return 1/$res;

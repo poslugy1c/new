@@ -3,25 +3,25 @@
 echo '2. Написать функцию которая выводит первые N чисел фибоначчи';
 echo '<br> <br>';
 
-function fibo($n)
+function fibo($nNumber)
 {
     $arrFibo = array();
 
-    $n--;
+    $nNumber--;
     $arrFibo[] =0;
 
-    $n--;
+    $nNumber--;
     $arrFibo[] =1;
 
     $firstNum  = 0;
-    $SecondNum = 1;
+    $secondNum = 1;
     $numFibo = 0;
 
-    while ($n > 0) {
-        $numFibo = ($firstNum) + ($SecondNum);
-        $firstNum = $SecondNum;
-        $SecondNum = $numFibo;
-        $n--;
+    while ($nNumber > 0) {
+        $numFibo = ($firstNum) + ($secondNum);
+        $firstNum = $secondNum;
+        $secondNum = $numFibo;
+        $nNumber--;
         $arrFibo[] =$numFibo;
     }
     return $arrFibo;

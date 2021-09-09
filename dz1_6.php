@@ -50,15 +50,15 @@ $matr2 = [
     [11, 3, 17]
 ];
 
-function SumMatrix($m1, $m2)
+function SumMatrix($matrix1, $matrix2)
 {
-    $m = count($m1);
-    $n = count($m1[0]);
+    $m1Count = count($matrix1);
+    $m2Count = count($matrix1[0]);
     $mRes = array();
 
-    for ($i = 0; $i < $m; $i++) {
+    for ($i = 0; $i < $m1Count; $i++) {
         $mRes[$i] = array();
-        for ($j = 0; $j < $n; $j++) $mRes[$i][$j] = $m1[$i][$j] + $m2[$i][$j];
+        for ($j = 0; $j < $m2Count; $j++) $mRes[$i][$j] = $matrix1[$i][$j] + $matrix2[$i][$j];
     }
     return $mRes;
 };
@@ -84,17 +84,17 @@ $matrNew = [
     [-19, 8, 0,  1]
 ];
 
-function removeRow(&$m)
+function removeRow(&$matrix)
 {
-    $mLength =count($m);
+    $mLength =count($matrix);
     for ($i = 0; $i < $mLength; $i++) {
         $sum = 0;
         $nulElem = false;
 
-        for ($j = 0; $j < count($m[$i]); $j++) {
-            $sum += $m[$i][$j];
+        for ($j = 0; $j < count($matrix[$i]); $j++) {
+            $sum += $matrix[$i][$j];
 
-            if ($m[$i][$j] == 0) {
+            if ($matrix[$i][$j] == 0) {
                 $nulElem = true;
             };
             // echo '<br>';
@@ -103,41 +103,41 @@ function removeRow(&$m)
         // echo '<br>';
 
         if (($sum >= 0) && ($nulElem)) {
-              unset($m[$i]); 
+              unset($matrix[$i]); 
         };
     };
 }
 
-function removeCol(&$m)
+function removeCol(&$matrix)
 {
-    $IndNumbers = array();
+    $indNumbers = array();
 
-    for ($i = 0; $i < count($m[0]); $i++) {
+    for ($i = 0; $i < count($matrix[0]); $i++) {
         $sum = 0;
         $nulElem = false;
-        for ($j = 0; $j < count($m[$i]); $j++) {
-            $sum += $m[$j][$i];
+        for ($j = 0; $j < count($matrix[$i]); $j++) {
+            $sum += $matrix[$j][$i];
 
-            if ($m[$j][$i] == 0) {
+            if ($matrix[$j][$i] == 0) {
                 $nulElem = true;
             };
             // echo '<br>';
         };
 
         if (($sum >= 0) && ($nulElem)) {
-            $IndNumbers[] = $i;
+            $indNumbers[] = $i;
         };
     };
 
     echo '<br>';
-    print_r($IndNumbers);
+    print_r($indNumbers);
 
-    for ($i = 0; $i < count($m[0]); $i++) {
-        for ($x = 0; $x < count($IndNumbers); $x++) {
-            if ($IndNumbers[$x] == $i) {
-                for ($j = 0; $j < count($m); $j++) {
+    for ($i = 0; $i < count($matrix[0]); $i++) {
+        for ($x = 0; $x < count($indNumbers); $x++) {
+            if ($indNumbers[$x] == $i) {
+                for ($j = 0; $j < count($matrix); $j++) {
                     // array_splice($m[$j], $i, 1);
-                    unset($m[$j][$i]);
+                    unset($matrix[$j][$i]);
                 };
                 // array_splice($IndNumbers, $x, 1);
             };
