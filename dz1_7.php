@@ -352,26 +352,26 @@ function removeRow(&$m, $i = 0, $mLength = 0)
 
 function removeCol(&$m1, $i = 0)
 {
-    if($i >= count($m1)){
+    if ($i >= count($m1)) {
         return $m1;
     };
-    
+
     $sum = 0;
     $nulElem = false;
-    for($j = 0; $j <count($m1); $j++){
-       if($m1[$j][$i] ==0){
-           $nulElem =true;
-       };  
-       $sum += $m1[$j][$i];
-    // echo $m1[$j][$i] . ' ';
+    for ($j = 0; $j < count($m1); $j++) {
+        if ($m1[$j][$i] == 0) {
+            $nulElem = true;
+        };
+        $sum += $m1[$j][$i];
+        // echo $m1[$j][$i] . ' ';
     };
-    
+
     // echo '(' . $z .')';    
     if (($sum >= 0) && ($nulElem)) {
-        for($j = 0; $j <count($m1); $j++){
+        for ($j = 0; $j < count($m1); $j++) {
             unset($m1[$j][$i]);
-        };      
-    };    
+        };
+    };
     // echo ' | ';
     return removeCol($m1, ++$i);
 }
@@ -389,3 +389,34 @@ removeCol($matrix_copy);
 
 echo '<br> Результат обработки столбцов <br>';
 print_r($matrix_copy);
+
+
+echo '<br>';
+echo '<br>';
+echo '8. Написать рекурсивную функцию которая будет обходить и выводить все значения любого массива и любого уровня вложенности';
+echo '<br>';
+
+$arrTest = [
+    [1, 8, 7],
+    4,
+    [77, [99, 55, 44]],
+    [-17, 219],
+    333,
+    [5 , [7, 0 ,-6, [[3]]]]
+];
+
+function rec($arr)
+{
+    foreach ($arr as $arrInd) {
+        if (is_array($arrInd)) {
+            echo '<br>';
+            rec($arrInd);
+            echo '<br>';
+        } else {
+            echo ' ' . $arrInd;
+        };
+    };
+
+};
+
+rec($arrTest);
