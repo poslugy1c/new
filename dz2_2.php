@@ -26,6 +26,7 @@ abstract class Shape{
             if(gettype($this->width) != 'integer' || gettype($this->height) != 'integer'){
                 throw new Exception('Один из переданный параметров  не является числом <br>');
             };
+            return true;
         } catch (Exception $e) {
            echo $e -> getMessage();
            return false;
@@ -64,6 +65,7 @@ abstract class Shape{
             if(gettype($this->width) != 'integer' || gettype($this->height) != 'integer' || gettype($this->length) != 'integer'){
                 throw new Exception('Один из переданный параметров  не является числом <br>');
             };
+            return true;
         } catch (Exception $e) {
            echo $e -> getMessage();
            return false;
@@ -97,6 +99,7 @@ abstract class Shape{
             if(gettype($this->radius) != 'integer'){
                 throw new Exception('Радиус не является числом <br>');
             };
+            return true;
         } catch (Exception $e) {
            echo $e -> getMessage();
            return false;
@@ -117,12 +120,12 @@ abstract class Shape{
  
      public function perimetr(){
         if(!$this-> testParam()){
+
             return null;
         };
          return 2 * M_PI * $this->radius;
      }
  }
- 
  
  $rectangle = new Rectangle('xxx', 4);
  $circle = new Circle(100);
