@@ -143,3 +143,6 @@ abstract class Shape{
  echo '<br>';
  echo 'площадь прямоугольника ' . $rectangle ->square();
  echo '<br>';
+
+
+// UML диаграмма в файле  UML Shape.jpg
