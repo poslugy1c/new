@@ -9,4 +9,25 @@ echo '<p>3. Создайте класс с именем Logger, реализуй
 <br> Реализовать pattern singleton для этого класса, - аргументировать, если считаете что singleton не допустим для этого задания - аргументировать
  </p>';
 
- 
+ class Log {
+    private $path;
+    private $message;
+
+    public function __construct($path, $message)
+    {
+        $this->path = $path;
+        $this->message = $message;
+    }
+
+    public function addLog(){
+
+        $logFile = fopen($this->path, 'a+');
+        $logText = PHP_EOL . date('Y.m.d h:i:s') . PHP_EOL . $this->message;
+        fwrite($logFile, $logText);
+        fclose($logFile); 
+        
+    }
+}    
+
+$newLog = new Log('log.txt', 'Test log ');
+$newLog->addLog();
